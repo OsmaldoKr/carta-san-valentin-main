@@ -1,298 +1,348 @@
 @import url("https://fonts.googleapis.com/css?family=Sacramento");
 
-/* --- PALETA DE COLORES (Variables para fácil ajuste) --- */
+/* --- PALETA DE COLORES --- */
 :root {
-    --bg-color: #e3f2fd;        /* Fondo de la página (azul muy claro) */
-    
-    /* El Sobre */
-    --envelope-main: #64b5f6;   /* Azul claro (cuerpo principal) */
-    --envelope-flap: #42a5f5;   /* Azul medio (solapa) */
-    --envelope-shadow: #1e88e5; /* Sombra/profundidad */
-    
-    /* Partes frontales del sobre */
-    --front-left-right: #90caf9; /* Triángulos laterales */
-    --front-bottom: #bbdefb;     /* Triángulo inferior */
-    
-    /* Corazón (Sello) - Lo mantengo en Rojo/Rosa fuerte para contraste o Azul Oscuro */
-    --heart-color: #d32f2f;      /* Rojo clásico para resaltar sobre el azul */
-    
-    /* Texto */
-    --text-color: #0d47a1;       /* Azul oscuro */
-    --title-color: #1565c0;      /* Azul título */
+    --bg-color: #e3f2fd;
+    --envelope-main: #64b5f6;
+    --envelope-flap: #42a5f5;
+    --envelope-shadow: #1e88e5;
+    --front-left-right: #90caf9;
+    --front-bottom: #bbdefb;
+    --heart-color: #d32f2f;
+    --text-color: #0d47a1;
+    --title-color: #1565c0;
 }
 
 body {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 100vh;
-  font-family: "Sacramento", cursive;
-  background-color: var(--bg-color);
-  overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    margin: 0;
+    font-family: "Sacramento", cursive;
+    background-color: var(--bg-color);
+    overflow: hidden;
 }
 
-#card {
-  height: 500px;
-  width: 800px;
-  margin: 5em auto;
-  position: fixed;
-  top: -15px;
-  left: 25%;
-  display: flex;
-  visibility: hidden;
-}
-
-/* --- ESTILOS DE LA TARJETA ABIERTA --- */
-.side {
-  background: #eee;
-  height: 550px;
-  width: 400px;
-  padding: 10px;
-}
-
-.side.one {
-  width: 320px;
-  /* Gradiente sutil en azulados/grises */
-  background: linear-gradient(90deg, #fff, #fff 40%, #e1f5fe);
-  display: flex; 
-  justify-content: center; 
-  align-items: center; 
-  transform: skew(10deg, 20deg);
-  position: relative;
-  overflow: hidden;
-}
-
-.side.two {
-  transform: skew(10deg, -15deg);
-  background: linear-gradient(-90deg, #fff, #fff 40%, #e1f5fe);
-}
-
-#card {
-  height: 500px;
-  width: 800px;
-  margin: 5em auto;
-  position: fixed;
-  top: -15px;
-  left: 25%;
-  display: flex;
-  visibility: hidden;
-  opacity: 0; /* AGREGAR ESTO */
-  transform: scale(0.1); /* AGREGAR ESTO */
-  transition: opacity 1s ease, transform 1s ease; /* AGREGAR ESTO */
-  z-index: 10; /* AGREGAR ESTO para que esté sobre el sobre */
-}
-
-#card h2 {
-  font-size: 3em;
-  margin: 0;
-  color: var(--title-color); /* Azul título */
-  text-align: center;
-}
-
-#card p {
-  font-size: 1.5em;
-  text-align: justify;
-  padding-left: 30px; 
-  padding-right: 30px;
-  color: #555;
-}
-
-/* --- EL SOBRE CERRADO --- */
+/* --- SOBRE CENTRADO --- */
 .valentines-day {
-  position: relative;
-  cursor: pointer;
+    position: relative;
+    cursor: pointer;
+    z-index: 1;
 }
 
 .envelope {
-  position: relative;
-  filter: drop-shadow(0 0 25px rgba(0, 0, 0, 0.3));
+    position: relative;
+    filter: drop-shadow(0 0 25px rgba(0, 0, 0, 0.3));
 }
 
-/* Parte trasera/superior del sobre (Solapa) */
+/* Solapa superior del sobre */
 .envelope:before {
-  content: "";
-  position: absolute;
-  width: 254px;
-  height: 254px;
-  background-color: var(--envelope-flap); /* Azul medio */
-  transform: rotate(-45deg);
-  border-radius: 0 15px 0 0;
-  left: -37px;
-  top: -82px;
+    content: "";
+    position: absolute;
+    width: 254px;
+    height: 254px;
+    background-color: var(--envelope-flap);
+    transform: rotate(-45deg);
+    border-radius: 0 15px 0 0;
+    left: -37px;
+    top: -82px;
 }
 
 /* Cuerpo del sobre */
 .envelope:after {
-  content: "";
-  position: absolute;
-  background-color: var(--envelope-main); /* Azul claro */
-  width: 360px;
-  height: 225px;
-  left: -90px;
-  top: 45px;
+    content: "";
+    position: absolute;
+    background-color: var(--envelope-main);
+    width: 360px;
+    height: 225px;
+    left: -90px;
+    top: 45px;
 }
 
-/* --- EL CORAZÓN (Sello) --- */
+/* --- CORAZÓN (Sello) --- */
 .heart {
-  position: relative;
-  background-color: var(--heart-color);
-  display: inline-block;
-  height: 180px;
-  top: 50px;
-  left: 0;
-  transform: rotate(-45deg);
-  width: 180px;
-  filter: drop-shadow(0 -10px 25px rgba(0, 0, 0, 0.3));
-  transition: 0.5s;
+    position: relative;
+    background-color: var(--heart-color);
+    display: inline-block;
+    height: 180px;
+    top: 50px;
+    left: 0;
+    transform: rotate(-45deg);
+    width: 180px;
+    filter: drop-shadow(0 -10px 25px rgba(0, 0, 0, 0.3));
+    transition: 0.5s;
 }
 
 .heart:before,
 .heart:after {
-  content: "";
-  background-color: var(--heart-color);
-  border-radius: 50%;
-  height: 180px;
-  width: 180px;
-  position: absolute;
+    content: "";
+    background-color: var(--heart-color);
+    border-radius: 50%;
+    height: 180px;
+    width: 180px;
+    position: absolute;
 }
 
 .heart:before {
-  top: -100px;
-  left: 0;
+    top: -100px;
+    left: 0;
 }
 
 .heart:after {
-  left: 100px;
-  top: 0;
+    left: 100px;
+    top: 0;
 }
 
-/* --- PARTES FRONTALES (Bolsillo) --- */
+/* --- PARTES FRONTALES DEL SOBRE --- */
 .front {
-  position: absolute;
-  width: 0;
-  height: 0;
-  /* Triángulo derecho */
-  border-right: 190px solid var(--front-left-right); 
-  border-top: 113px solid transparent;
-  border-bottom: 113px solid transparent;
-  top: 44px;
-  left: 80px;
-  z-index: 4;
+    position: absolute;
+    width: 0;
+    height: 0;
+    border-right: 190px solid var(--front-left-right);
+    border-top: 113px solid transparent;
+    border-bottom: 113px solid transparent;
+    top: 44px;
+    left: 80px;
+    z-index: 4;
 }
 
 .front:before {
-  content: "";
-  position: absolute;
-  width: 0;
-  height: 0;
-  /* Triángulo izquierdo */
-  border-left: 190px solid var(--front-left-right); 
-  border-top: 113px solid transparent;
-  border-bottom: 113px solid transparent;
-  top: -113px;
-  left: -170px;
+    content: "";
+    position: absolute;
+    width: 0;
+    height: 0;
+    border-left: 190px solid var(--front-left-right);
+    border-top: 113px solid transparent;
+    border-bottom: 113px solid transparent;
+    top: -113px;
+    left: -170px;
 }
 
 .front:after {
-  width: 0;
-  height: 0;
-  position: absolute;
-  content: "";
-  /* Triángulo inferior (el más claro) */
-  border-bottom: 150px solid var(--front-bottom); 
-  border-right: 180px solid transparent;
-  border-left: 180px solid transparent;
-  top: -36px;
-  left: -170px;
+    width: 0;
+    height: 0;
+    position: absolute;
+    content: "";
+    border-bottom: 150px solid var(--front-bottom);
+    border-right: 180px solid transparent;
+    border-left: 180px solid transparent;
+    top: -36px;
+    left: -170px;
 }
 
 /* --- TEXTO SOBRE EL SOBRE --- */
 .text {
-  position: absolute;
-  font-family: arial;
-  letter-spacing: 3.5px;
-  text-align: center;
-  color: white;
-  z-index: 2;
-  top: 80px;
-  left: 15px;
-  transition: 0.5s;
-  text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
+    position: absolute;
+    font-family: arial;
+    letter-spacing: 3.5px;
+    text-align: center;
+    color: white;
+    z-index: 2;
+    top: 80px;
+    left: 15px;
+    transition: 0.5s;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
 }
 
-/* Animación Hover */
+/* --- ANIMACIÓN HOVER DEL SOBRE --- */
 .valentines-day:hover .heart {
-  transform: translateY(-50px) rotate(-45deg);
+    transform: translateY(-50px) rotate(-45deg);
 }
 
 .valentines-day:hover .text {
-  transform: translateY(-50px);
+    transform: translateY(-50px);
 }
 
-/* Corazón animado dentro de la tarjeta */
+/* --- TARJETA (OCULTA AL INICIO) --- */
+#card {
+    height: 500px;
+    width: 800px;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0.1);
+    display: flex;
+    visibility: hidden;
+    opacity: 0;
+    z-index: 10;
+}
+
+/* --- LADOS DE LA TARJETA --- */
+.side {
+    background: #eee;
+    height: 550px;
+    width: 400px;
+    padding: 10px;
+}
+
+.side.one {
+    width: 320px;
+    background: linear-gradient(90deg, #fff, #fff 40%, #e1f5fe);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transform: skew(10deg, 20deg);
+    position: relative;
+    overflow: hidden;
+}
+
+.side.two {
+    transform: skew(10deg, -15deg);
+    background: linear-gradient(-90deg, #fff, #fff 40%, #e1f5fe);
+}
+
+/* --- CONTENIDO DE LA TARJETA --- */
+#card h2 {
+    font-size: 3em;
+    margin: 0;
+    color: var(--title-color);
+    text-align: center;
+}
+
+#card p {
+    font-size: 1.5em;
+    text-align: justify;
+    padding-left: 30px;
+    padding-right: 30px;
+    color: #555;
+}
+
+/* --- CORAZÓN ANIMADO DENTRO DE LA TARJETA --- */
 .side.one .fa-heart {
-  font-size: 8em;
-  color: #d32f2f; /* Rojo intenso */
-  animation: pulseHeart 1.5s ease-in-out infinite alternate;
-  cursor: default;
+    font-size: 8em;
+    color: #d32f2f;
+    animation: pulseHeart 1.5s ease-in-out infinite alternate;
+    cursor: default;
 }
 
 @keyframes pulseHeart {
-  0% { transform: scale(1); }
-  100% { transform: scale(1.2); }
+    0% {
+        transform: scale(1);
+    }
+    100% {
+        transform: scale(1.2);
+    }
 }
 
-/* --- MEDIA QUERIES (Móvil) --- */
-@media only screen and (max-width: 600px) {
-  #card {
-    width: 90%; 
-    height: auto; 
-    margin: 2em auto; 
-    position: static; 
-    visibility: visible; /* Ojo: en tu original decía 'none' que no es válido para visibility */
-    top: 50px;
-    flex-direction: column; /* Apilar contenido si es necesario */
-  }
-
-  .side.side.one {
-    display: none;
-  }
-  
-  .side.two {
-      width: 100%;
-      transform: none; /* Quitar skew en móvil para que se lea bien */
-      background: #fff;
-  }
-
-  #card p {
-    padding-left: 10px !important; 
-    padding-right: 10px !important; 
-    font-size: 1.2em !important;
-  }
-
-  /* Si quieres ocultar el sobre en móvil y mostrar solo la carta */
-  .valentines-day {
-     /* display: none; */ 
-     /* Depende de tu lógica JS si ocultas esto */
-     position: fixed;
-     top: 15%;
-     left: 50%;
-     transform: translate(-50%, -50%);
-  }
-  
-  .text {
-    font-size: 0.8em;
-  }
-
-}
-/* Animación de caída del sobre */
+/* --- ANIMACIÓN DE CAÍDA DEL SOBRE --- */
 @keyframes fall {
-  0% {
-    transform: translateY(0) rotate(0deg);
-    opacity: 1;
-  }
-  100% {
-    transform: translateY(100vh) rotate(20deg);
-    opacity: 0;
-  }
+    0% {
+        transform: translateY(0) rotate(0deg);
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(100vh) rotate(20deg);
+        opacity: 0;
+    }
+}
+
+/* --- RESPONSIVE (MÓVIL) --- */
+@media only screen and (max-width: 600px) {
+    body {
+        padding: 10px;
+    }
+
+    /* SOBRE CENTRADO EN MÓVIL */
+    .valentines-day {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%) scale(0.6);
+    }
+
+    /* CARTA CENTRADA EN MÓVIL */
+    #card {
+        width: 95vw;
+        max-width: 95vw;
+        height: auto;
+        max-height: 90vh;
+        flex-direction: column;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        overflow-y: auto;
+    }
+
+    /* Ocultar el lado del corazón en móvil */
+    .side.one {
+        display: none;
+    }
+
+    /* Lado del texto ocupa todo el ancho */
+    .side.two {
+        width: 100%;
+        height: auto;
+        max-height: 85vh;
+        transform: none;
+        background: #fff;
+        padding: 20px;
+        overflow-y: auto;
+        box-sizing: border-box;
+    }
+
+    /* Ajustar texto para móvil */
+    #card h2 {
+        font-size: 2em;
+        margin: 10px 0;
+    }
+
+    #card p {
+        padding-left: 15px !important;
+        padding-right: 15px !important;
+        font-size: 1.1em !important;
+        line-height: 1.6;
+        margin: 15px 0;
+    }
+
+    /* Texto del sobre más pequeño */
+    .text {
+        font-size: 1em;
+        left: 10px;
+    }
+
+    /* Ajustar elementos del sobre */
+    .envelope:before {
+        width: 248px;
+        height: 260px;
+    }
+
+    .envelope:after {
+        width: 360px;
+        height: 180px;
+    }
+
+    .heart {
+        height: 180px;
+        width: 180px;
+    }
+
+    .heart:before,
+    .heart:after {
+        height: 150px;
+        width: 170px;
+    }
+
+    .heart:before {
+        top: -78px;
+    }
+
+    .heart:after {
+        left: 78px;
+    }
+}
+
+/* Para pantallas MUY pequeñas */
+@media only screen and (max-width: 400px) {
+    .valentines-day {
+        transform: translate(-50%, -50%) scale(0.5);
+    }
+
+    #card p {
+        font-size: 1em !important;
+    }
+
+    .text {
+        font-size: 0.5em;
+    }
 }
