@@ -1,0 +1,271 @@
+@import url("https://fonts.googleapis.com/css?family=Sacramento");
+
+/* --- PALETA DE COLORES (Variables para fácil ajuste) --- */
+:root {
+    --bg-color: #e3f2fd;        /* Fondo de la página (azul muy claro) */
+    
+    /* El Sobre */
+    --envelope-main: #64b5f6;   /* Azul claro (cuerpo principal) */
+    --envelope-flap: #42a5f5;   /* Azul medio (solapa) */
+    --envelope-shadow: #1e88e5; /* Sombra/profundidad */
+    
+    /* Partes frontales del sobre */
+    --front-left-right: #90caf9; /* Triángulos laterales */
+    --front-bottom: #bbdefb;     /* Triángulo inferior */
+    
+    /* Corazón (Sello) - Lo mantengo en Rojo/Rosa fuerte para contraste o Azul Oscuro */
+    --heart-color: #d32f2f;      /* Rojo clásico para resaltar sobre el azul */
+    
+    /* Texto */
+    --text-color: #0d47a1;       /* Azul oscuro */
+    --title-color: #1565c0;      /* Azul título */
+}
+
+body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  font-family: "Sacramento", cursive;
+  background-color: var(--bg-color);
+  overflow: hidden;
+}
+
+#card {
+  height: 500px;
+  width: 800px;
+  margin: 5em auto;
+  position: fixed;
+  top: -15px;
+  left: 25%;
+  display: flex;
+  visibility: hidden;
+}
+
+/* --- ESTILOS DE LA TARJETA ABIERTA --- */
+.side {
+  background: #eee;
+  height: 550px;
+  width: 400px;
+  padding: 10px;
+}
+
+.side.one {
+  width: 320px;
+  /* Gradiente sutil en azulados/grises */
+  background: linear-gradient(90deg, #fff, #fff 40%, #e1f5fe);
+  display: flex; 
+  justify-content: center; 
+  align-items: center; 
+  transform: skew(10deg, 20deg);
+  position: relative;
+  overflow: hidden;
+}
+
+.side.two {
+  transform: skew(10deg, -15deg);
+  background: linear-gradient(-90deg, #fff, #fff 40%, #e1f5fe);
+}
+
+#card h2 {
+  font-size: 3em;
+  margin: 0;
+  color: var(--title-color); /* Azul título */
+  text-align: center;
+}
+
+#card p {
+  font-size: 1.5em;
+  text-align: justify;
+  padding-left: 30px; 
+  padding-right: 30px;
+  color: #555;
+}
+
+/* --- EL SOBRE CERRADO --- */
+.valentines-day {
+  position: relative;
+  cursor: pointer;
+}
+
+.envelope {
+  position: relative;
+  filter: drop-shadow(0 0 25px rgba(0, 0, 0, 0.3));
+}
+
+/* Parte trasera/superior del sobre (Solapa) */
+.envelope:before {
+  content: "";
+  position: absolute;
+  width: 254px;
+  height: 254px;
+  background-color: var(--envelope-flap); /* Azul medio */
+  transform: rotate(-45deg);
+  border-radius: 0 15px 0 0;
+  left: -37px;
+  top: -82px;
+}
+
+/* Cuerpo del sobre */
+.envelope:after {
+  content: "";
+  position: absolute;
+  background-color: var(--envelope-main); /* Azul claro */
+  width: 360px;
+  height: 225px;
+  left: -90px;
+  top: 45px;
+}
+
+/* --- EL CORAZÓN (Sello) --- */
+.heart {
+  position: relative;
+  background-color: var(--heart-color);
+  display: inline-block;
+  height: 180px;
+  top: 50px;
+  left: 0;
+  transform: rotate(-45deg);
+  width: 180px;
+  filter: drop-shadow(0 -10px 25px rgba(0, 0, 0, 0.3));
+  transition: 0.5s;
+}
+
+.heart:before,
+.heart:after {
+  content: "";
+  background-color: var(--heart-color);
+  border-radius: 50%;
+  height: 180px;
+  width: 180px;
+  position: absolute;
+}
+
+.heart:before {
+  top: -100px;
+  left: 0;
+}
+
+.heart:after {
+  left: 100px;
+  top: 0;
+}
+
+/* --- PARTES FRONTALES (Bolsillo) --- */
+.front {
+  position: absolute;
+  width: 0;
+  height: 0;
+  /* Triángulo derecho */
+  border-right: 190px solid var(--front-left-right); 
+  border-top: 113px solid transparent;
+  border-bottom: 113px solid transparent;
+  top: 44px;
+  left: 80px;
+  z-index: 4;
+}
+
+.front:before {
+  content: "";
+  position: absolute;
+  width: 0;
+  height: 0;
+  /* Triángulo izquierdo */
+  border-left: 190px solid var(--front-left-right); 
+  border-top: 113px solid transparent;
+  border-bottom: 113px solid transparent;
+  top: -113px;
+  left: -170px;
+}
+
+.front:after {
+  width: 0;
+  height: 0;
+  position: absolute;
+  content: "";
+  /* Triángulo inferior (el más claro) */
+  border-bottom: 150px solid var(--front-bottom); 
+  border-right: 180px solid transparent;
+  border-left: 180px solid transparent;
+  top: -36px;
+  left: -170px;
+}
+
+/* --- TEXTO SOBRE EL SOBRE --- */
+.text {
+  position: absolute;
+  font-family: arial;
+  letter-spacing: 3.5px;
+  text-align: center;
+  color: white;
+  z-index: 2;
+  top: 80px;
+  left: 15px;
+  transition: 0.5s;
+  text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
+}
+
+/* Animación Hover */
+.valentines-day:hover .heart {
+  transform: translateY(-50px) rotate(-45deg);
+}
+
+.valentines-day:hover .text {
+  transform: translateY(-50px);
+}
+
+/* Corazón animado dentro de la tarjeta */
+.side.one .fa-heart {
+  font-size: 8em;
+  color: #d32f2f; /* Rojo intenso */
+  animation: pulseHeart 1.5s ease-in-out infinite alternate;
+  cursor: default;
+}
+
+@keyframes pulseHeart {
+  0% { transform: scale(1); }
+  100% { transform: scale(1.2); }
+}
+
+/* --- MEDIA QUERIES (Móvil) --- */
+@media only screen and (max-width: 600px) {
+  #card {
+    width: 90%; 
+    height: auto; 
+    margin: 2em auto; 
+    position: static; 
+    visibility: visible; /* Ojo: en tu original decía 'none' que no es válido para visibility */
+    top: 50px;
+    flex-direction: column; /* Apilar contenido si es necesario */
+  }
+
+  .side.side.one {
+    display: none;
+  }
+  
+  .side.two {
+      width: 100%;
+      transform: none; /* Quitar skew en móvil para que se lea bien */
+      background: #fff;
+  }
+
+  #card p {
+    padding-left: 10px !important; 
+    padding-right: 10px !important; 
+    font-size: 1.2em !important;
+  }
+
+  /* Si quieres ocultar el sobre en móvil y mostrar solo la carta */
+  .valentines-day {
+     /* display: none; */ 
+     /* Depende de tu lógica JS si ocultas esto */
+     position: fixed;
+     top: 15%;
+     left: 50%;
+     transform: translate(-50%, -50%);
+  }
+  
+  .text {
+    font-size: 0.8em;
+  }
+}
