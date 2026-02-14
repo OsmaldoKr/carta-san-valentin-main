@@ -67,6 +67,21 @@ body {
   background: linear-gradient(-90deg, #fff, #fff 40%, #e1f5fe);
 }
 
+#card {
+  height: 500px;
+  width: 800px;
+  margin: 5em auto;
+  position: fixed;
+  top: -15px;
+  left: 25%;
+  display: flex;
+  visibility: hidden;
+  opacity: 0; /* AGREGAR ESTO */
+  transform: scale(0.1); /* AGREGAR ESTO */
+  transition: opacity 1s ease, transform 1s ease; /* AGREGAR ESTO */
+  z-index: 10; /* AGREGAR ESTO para que esté sobre el sobre */
+}
+
 #card h2 {
   font-size: 3em;
   margin: 0;
@@ -267,5 +282,17 @@ body {
   
   .text {
     font-size: 0.8em;
+  }
+
+}
+/* Animación de caída del sobre */
+@keyframes fall {
+  0% {
+    transform: translateY(0) rotate(0deg);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(100vh) rotate(20deg);
+    opacity: 0;
   }
 }
